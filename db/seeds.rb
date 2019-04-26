@@ -9,7 +9,7 @@
 
 # TEST USERS
 pass =  'Tuna123!'
-u1 = User.create({email: 'tuna@example.com', password: pass})
+u1 = User.create({email: 'tuna@example.com', password: pass, role: :editor})
 if u1.errors.empty?
   p '=== USER CREATED ==='
   puts "\tEmail: #{u1.email}"
