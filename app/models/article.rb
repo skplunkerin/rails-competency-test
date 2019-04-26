@@ -7,7 +7,7 @@ class Article < ApplicationRecord
   validates_uniqueness_of   :title, :slug
 
   # Generate Slug
-  before_validation   :create_slug
+  before_validation   :fix_slug, :fix_category
 
   scope :get_categories, -> { all.pluck(:category).uniq }
   # Turns ['category_1', 'category_2'] to ['Category 1', 'Category 2']
@@ -36,19 +36,38 @@ class Article < ApplicationRecord
   end
 
   private
+  
+  def fix_category
+    if category.present?
+      # 1. Downcase
+      # 2. Convert non-alphanumeric characters to underscores
+      # 3. Trim any start/end _'s
+      self.category = Article.stripper(self.category, separator: '_')
+    end
+  end
 
   # Turn complicated titles like:
   #   -Test article 1 - tuna man 35 and j12-=$
   # To simple/user-friendly URL slugs like:
   #   test-article-1-tuna-man-35-and-j12
-  def create_slug
+  def fix_slug
     # If title is present and slug not set
     if title.present? && !slug.present?
-      # 1. Replace invalid characters (2+ consecutive characters) with a -
-      # 2. Replace invalid characters (individual characters) with a -
-      # 3. Trim any start/end -'s
-      self.slug = self.title.downcase.gsub(/[^A-Za-z0-9]{2,}/, '-').gsub(/[^A-Za-z0-9]/, '-').gsub(/^-|-$/, '')
+      fixed_slug = Article.stripper(self.title)
     end
+    if slug.present?
+      # Make sure slug matches format
+      fixed_slug = Article.stripper(self.slug)
+    end
+    self.slug = fixed_slug
+  end
+
+  def self.stripper(s, **args)
+    sep = args[:separator] ? args[:separator] : '-'
+    # 1. Replace invalid characters (2+ consecutive characters) with a - (or separator)
+    # 2. Replace invalid characters (individual characters) with a - (or separator)
+    # 3. Trim any start/end -'s (from separator)
+    return s.downcase.gsub(/[^A-Za-z0-9]{2,}/, sep).gsub(/[^A-Za-z0-9]/, sep).gsub(/^#{sep}|#{sep}$/, '')
   end
 
 end

@@ -1,0 +1,23 @@
+<%= form_for @article do |f| %>
+  <div class="col-12 form-group">
+    <%= f.label :title %>
+    <br />
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+  <div class="col-12 form-group">
+    <%= f.label :category %>
+    <br />
+    <%= f.text_field :category, class: 'form-control' %>
+  </div>
+  <div class="col-12 form-group">
+    <%= f.label :slug %>
+    <br />
+    <%= f.text_field :slug, class: 'form-control' %>
+  </div>
+  <div class="col-12 form-group">
+    <%= f.label :content %>
+    <br />
+    <%= f.text_area :content, class: 'form-control' %>
+  </div>
+  <%= f.submit params[:action] == 'new' ? 'Create' : 'Update', class: 'btn btn-primary' %>
+<% end %>

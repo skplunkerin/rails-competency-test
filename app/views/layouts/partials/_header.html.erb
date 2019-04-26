@@ -16,11 +16,29 @@
       <li class="nav-item nav__articles">
         <%= link_to "Articles", articles_path, class: "nav-link #{@articlespage}" %>
       </li>
+
+      <% # Article CrUD %>
+      <% if @editor_access %>
+        <li class="nav-item nav__home">
+          <%= link_to "New Article", new_article_path, class: "nav-link #{@newarticlepage}" %>
+        </li>
+      <% end %>
+
+      <%#<% # User CRUD %>
+      <%#<% if @admin_access %>
+      <%#  <li class="nav-item nav__users">
+      <%#    <%= link_to "Users", admin_users_path, class: "nav-link #{@userspage}" %>
+      <%#  </li>
+      <%#  <li class="nav-item nav__users">
+      <%#    <%= link_to "New User", admin_new_user_path, class: "nav-link #{@userpage}" %>
+      <%#  </li>
+      <%#<% end %>
     </ul>
   </nav>
+
   <div class="container alerts">
     <% flash.each do |type, msg| %>
-      <% if type == "notice" %>
+      <% if ['notice', 'info', 'success'].include?(type) %>
         <div class="alert alert-info" role="alert">
       <%# elsif type == "alert" %>
       <% else %>
