@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  
+  # Articles
+  resources :articles
 
   # Users (using Devise gem)
   devise_for :users

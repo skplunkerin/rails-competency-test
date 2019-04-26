@@ -15,6 +15,7 @@ if u1.errors.empty?
   puts "\tEmail: #{u1.email}"
   puts "\tPass: #{pass}"
 else
+  u1 = User.find_by_email('tuna@example.com')
   p '=== USER ERRORS ==='
   puts "\t" + u1.errors.full_messages.to_sentence
   puts "\tEmail: #{u1.email}"
@@ -24,5 +25,43 @@ p '======'
 # END USERS
 
 # TEST ARTICLES
-# TODO
+[
+  {
+    user_id: u1.id,
+    title: "Test article 1",
+    category: "category_1",
+    content: "<p>This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph.</p><p>This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two.</p><p>This is paragraph three. This is paragraph three. This is paragraph three. This is paragraph three.</p>"
+  },
+  {
+    user_id: u1.id,
+    title: "Test article Two",
+    category: "category_2",
+    content: "<p>This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph.</p><p>This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two.</p><p>This is paragraph three. This is paragraph three. This is paragraph three. This is paragraph three.</p>"
+  },
+  {
+    user_id: u1.id,
+    title: "Test article 3",
+    category: "category_1",
+    content: "<p>This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph.</p><p>This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two.</p><p>This is paragraph three. This is paragraph three. This is paragraph three. This is paragraph three.</p>"
+  },
+  {
+    user_id: u1.id,
+    title: "Test article Number Four",
+    category: "category_2",
+    content: "<p>This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph.</p><p>This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two.</p><p>This is paragraph three. This is paragraph three. This is paragraph three. This is paragraph three.</p>"
+  }
+].each do |a|
+  a1 = Article.create(a)
+  if a1.errors.empty?
+    p '=== ARTICLE CREATED ==='
+    puts "\tTitle: #{a1.title}"
+    puts "\tCategory: #{a1.category}"
+  else
+    p '=== ARTICLE ERRORS ==='
+    puts "\t" + a1.errors.full_messages.to_sentence
+    puts "\tTitle: #{a1.title}"
+    puts "\tCategory: #{a1.category}"
+  end
+end
+p '======'
 # END ARTICLES
