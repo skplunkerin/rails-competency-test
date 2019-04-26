@@ -41,6 +41,12 @@ p '======'
   },
   {
     user_id: u1.id,
+    title: "Test article Two - Part 2",
+    category: "category_2",
+    content: "<p>This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph.</p><p>This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two.</p><p>This is paragraph three. This is paragraph three. This is paragraph three. This is paragraph three.</p>"
+  },
+  {
+    user_id: u1.id,
     title: "Test article 3",
     category: "category_1",
     content: "<p>This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph.</p><p>This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two.</p><p>This is paragraph three. This is paragraph three. This is paragraph three. This is paragraph three.</p>"
@@ -50,6 +56,12 @@ p '======'
     title: "Test article Number Four",
     category: "category_2",
     content: "<p>This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph.</p><p>This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two.</p><p>This is paragraph three. This is paragraph three. This is paragraph three. This is paragraph three.</p>"
+  },
+  {
+    user_id: u1.id,
+    title: "Test article Last",
+    category: "category_1",
+    content: "<div>This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph.</div><p>This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two.</p><p>This is paragraph three. This is paragraph three. This is paragraph three. This is paragraph three.</p>"
   }
 ].each do |a|
   a1 = Article.create(a)

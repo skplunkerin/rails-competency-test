@@ -65,3 +65,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 # User Roles
 gem 'petergate'
+# Bootstrap styles
+gem 'bootstrap', '~> 4.3.1'
+# Bootstrap dependent on jQuery
+# TODO: uncomment if using any Boostrap JS
+# gem 'jquery-rails'

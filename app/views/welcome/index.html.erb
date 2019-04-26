@@ -1,15 +1,21 @@
-<h1>Welcome!</h1>
+<div class="row">
+  <h1 class="col-12"><%= @welcome %></h1>
+</div>
 <% @articles.each do |cat, c_articles| %>
-  <div class="category-articles">
-    <h2><%= cat.to_s.gsub(/[-_]/, ' ').titleize %></h2>
+  <div class="row category-articles">
+    <h2 class="col-12"><%= cat.to_s.gsub(/[-_]/, ' ').titleize %></h2>
     <% c_articles.each do |a| %>
-      <div class="article-preview">
-        <h3><%= a.title %></h3>
-        <%= link_to "Read", article_path(a) %>
-        <%#= a.content.html_safe %>
+      <div class="col article-preview">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title"><%= a.title %></h3>
+            <p class="card-body">
+              <%= a.content_summary(length: 75) %>
+            </p>
+            <%= link_to "Read", article_path(a), class: 'card-link' %>
+          </div>
+        </div>
       </div>
     <% end %>
   </div>
-  <!-- Simple breaker, TODO: REMOVE WHEN STYLING ADDED -->
-  <hr class="remove-me" />
 <% end %>

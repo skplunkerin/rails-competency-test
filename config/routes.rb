@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   #       rails g devise:controllers users
   devise_for :users, controllers: {
     registrations:  'users/registrations',
-    sessions:       'users/sessions',
-    passwords:      'users/passwords'
+    sessions:       'users/sessions'
+    # passwords:      'users/passwords'
   }
 
   # Home page

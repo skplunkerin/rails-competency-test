@@ -233,6 +233,9 @@ Devise.setup do |config|
   # "users/sessions/new". It's turned off by default because it's slower if you
   # are using only default views.
   # config.scoped_views = false
+  # NOTE: THIS DOESN'T WORK, views still get generated incorrectly
+  #       (I need to manually edit each view to show correct url paths)
+  config.scoped_views = true
 
   # Configure the default scope given to Warden. By default it's the first
   # devise role declared in your routes (usually :user).
@@ -269,6 +272,14 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(scope: :user).unshift :some_external_strategy
   # end
+  # If User not signed in, want to redirect to sign_up (not sign_in)
+  # see:
+  #   - /lib/devise_failure_app.rb
+  #   - /config/application.rb
+  # https://github.com/plataformatec/devise/wiki/Redirect-to-new-registration-(sign-up)-path-if-unauthenticated
+  config.warden do |manager|
+    manager.failure_app = DeviseFailureApp
+  end
 
   # ==> Mountable engine configurations
   # When using Devise inside an engine, let's call it `MyEngine`, and this engine

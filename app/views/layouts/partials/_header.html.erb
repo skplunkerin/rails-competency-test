@@ -1,25 +1,32 @@
-<header>
+<header class="container-fluid">
   <nav>
-    <ul class="nav">
-      <li class="nav__home">
-        <%= link_to "Home", root_path %>
+    <ul class="nav nav-pills">
+      <li class="nav-item nav__home">
+        <%= link_to "Home", root_path, class: "nav-link #{@homepage}" %>
       </li>
-      <% if @user %>
-        <li class="nav__login nav__login--signed-in">
-          <%= link_to "Signout", "javascript:;" %>
+      <% if user_signed_in? %>
+        <li class="nav-item nav__login nav__login--signed-in">
+          <%= link_to "Sign Out", destroy_user_session_path, class: 'nav-link', method: :delete %>
         </li>
       <% else %>
-        <li class="nav__login">
-          <%= link_to "Login", new_user_session_path %>
+        <li class="nav-item nav__login">
+          <%= link_to "Log In", new_user_session_path, class: "nav-link #{@loginpage}" %>
         </li>
       <% end %>
-      <li class="nav__articles">
-        <%= link_to "Articles", articles_path %>
+      <li class="nav-item nav__articles">
+        <%= link_to "Articles", articles_path, class: "nav-link #{@articlespage}" %>
       </li>
     </ul>
   </nav>
-  <div class="alerts">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+  <div class="container alerts">
+    <% flash.each do |type, msg| %>
+      <% if type == "notice" %>
+        <div class="alert alert-info" role="alert">
+      <%# elsif type == "alert" %>
+      <% else %>
+        <div class="alert alert-danger" role="alert">
+      <% end %>
+      <%= msg %>
+    <% end %>
   </div>
 </header>
