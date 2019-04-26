@@ -62,6 +62,13 @@ p '======'
     title: "Test article Last",
     category: "category_1",
     content: "<div>This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph.</div><p>This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two.</p><p>This is paragraph three. This is paragraph three. This is paragraph three. This is paragraph three.</p>"
+  },
+  {
+    user_id: u1.id,
+    title: "Category/Slug Test",
+    slug: "best-slug-ever",
+    category: "Super Fishy",
+    content: "<div>This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph.</div><p>This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two. This is paragraph two.</p><p>This is paragraph three. This is paragraph three. This is paragraph three. This is paragraph three.</p>"
   }
 ].each do |a|
   a1 = Article.create(a)
