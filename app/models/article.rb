@@ -2,13 +2,24 @@ class Article < ApplicationRecord
   belongs_to    :user
 
   # These fields are required
-  validates                 :title, :category, :content,
+  validates                 :title, :category, :content, :slug,
                             presence: true
   validates_uniqueness_of   :title, :slug
 
-  before_create   :create_slug
+  # Generate Slug
+  before_validation   :create_slug
+
+  scope :get_categories, -> { all.pluck(:category).uniq }
+  # Turns [:category_1, :category_2] to ['Category 1', 'Category 2']
+  scope :get_category_titles, -> { all.pluck(:category).uniq.map{ |c| c.gsub(/[-_]/, ' ').titleize } }
+
+  # Change default identifier param from :id, to :slug
+  def to_param
+    slug
+  end
 
   private
+
   # Turn complicated titles like:
   #   -Test article 1 - tuna man 35 and j12-=$
   # To simple/user-friendly URL slugs like:

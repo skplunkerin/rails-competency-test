@@ -15,11 +15,12 @@ if u1.errors.empty?
   puts "\tEmail: #{u1.email}"
   puts "\tPass: #{pass}"
 else
-  u1 = User.find_by_email('tuna@example.com')
   p '=== USER ERRORS ==='
   puts "\t" + u1.errors.full_messages.to_sentence
   puts "\tEmail: #{u1.email}"
   puts "\tPass: #{pass}"
+  # Find user (used below)
+  u1 = User.find_by_email('tuna@example.com')
 end
 p '======'
 # END USERS
