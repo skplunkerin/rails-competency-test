@@ -1,0 +1,25 @@
+<header>
+  <nav>
+    <ul class="nav">
+      <li class="nav__home">
+        <%= link_to "Home", root_path %>
+      </li>
+      <% if @user %>
+        <li class="nav__login nav__login--signed-in">
+          <%= link_to "Signout", "javascript:;" %>
+        </li>
+      <% else %>
+        <li class="nav__login">
+          <%= link_to "Login", "javascript:;" %>
+        </li>
+      <% end %>
+      <li class="nav__articles">
+        <%= link_to "Articles", articles_path %>
+      </li>
+    </ul>
+  </nav>
+  <div class="alerts">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+  </div>
+</header>
